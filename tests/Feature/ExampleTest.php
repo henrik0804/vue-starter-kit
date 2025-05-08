@@ -2,19 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+it('returns a redirect response', function (): void {
+    $response = $this->get('/');
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-
-final class ExampleTest extends TestCase
-{
-    use RefreshDatabase;
-
-    public function test_returns_a_successful_response(): void
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
-}
+    $response->assertOk();
+});
