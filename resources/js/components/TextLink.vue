@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Method } from '@inertiajs/core';
-import { Link } from '@inertiajs/vue3';
+import { InertiaLinkProps, Link } from '@inertiajs/vue3';
 
-interface Props {
+interface Props extends Pick<InertiaLinkProps, 'href' | 'method' | 'as'> {
     href: string;
     tabindex?: number;
     method?: Method;
