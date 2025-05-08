@@ -72,4 +72,21 @@ final class PasswordResetTest extends TestCase
             return true;
         });
     }
+
+    public function test_it_fails_with_an_invalid_token(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'user@example.com',
+        ]);
+
+        $response = $this->post(route('password.store'), [
+            'token' => 'invalid-token',
+            'email' => $user->email,
+            'password' => 'new-secure-password',
+            'password_confirmation' => 'new-secure-password',
+        ]);
+
+        $response->assertSessionHasErrors(['email' => __('passwords.token')]);
+    }
+
 }
